@@ -1835,6 +1835,20 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     margin-bottom: 50px;
 }
 
+.section-grid-2-col {
+    display: grid;
+    grid-template-columns: 0.5fr 1.043fr;
+    width: 92%;
+    padding: 0 8%;
+    margin-bottom: 80px;
+    box-sizing: border-box;
+    align-items: start;
+    gap: 50px;
+}
+.section-grid-2-col img {
+    border-radius: 5px;
+    width: 100%;
+}
 .section-grid-3-col {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
