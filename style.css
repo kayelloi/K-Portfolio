@@ -1725,6 +1725,15 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
    Gallery
    ========================================================================== */
 
+.gallery-page .page-lightning-container {
+    position: absolute;
+    top: 0;
+    height: 91.28%;
+    right: 5.7%;
+    z-index: 1;
+    pointer-events: none;
+}
+
 /* Hero Section */
 .gallery-intro {
     height: 65vh;
@@ -1773,7 +1782,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 .section-grid-row-1{
     display: grid;
     grid-template-columns: 2.2fr 1fr; 
-    width: 92%;
+    width: 90%;
     padding: 0 8%;
     box-sizing: border-box;
     align-items: start;
@@ -1806,7 +1815,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 .section-grid-row-2{
     display: grid;
     grid-template-columns: 1.15fr 1fr;
-    width: 92%;
+    width: 90%;
     padding: 0 8%;
     margin-bottom: 80px;
     box-sizing: border-box;
@@ -1838,7 +1847,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 .section-grid-2-col {
     display: grid;
     grid-template-columns: 0.5fr 1.043fr;
-    width: 92%;
+    width: 90%;
     padding: 0 8%;
     margin-bottom: 80px;
     box-sizing: border-box;
@@ -1851,8 +1860,8 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 .section-grid-3-col {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 92%;
+    grid-template-columns: 0.93fr 1fr 1.15fr;
+    width: 90%;
     padding: 0 8%;
     margin-bottom: 80px;
     box-sizing: border-box;
@@ -1861,6 +1870,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 .section-grid-3-col img {
     border-radius: 5px;
+    width: 100%;
 }
 
 .vid-description h4 {
@@ -1875,7 +1885,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 .section-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: 92%;
+    width: 90%;
     padding: 0 8%;
     margin-bottom: 80px;
     box-sizing: border-box;
@@ -1887,7 +1897,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 1.34fr; 
     gap: 20px;
-    width: 92%;
+    width: 90%;
     padding: 0 8%;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -1902,7 +1912,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
     gap: 20px;
-    width: 92%;
+    width: 90%;
     padding: 0 8%;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -1917,7 +1927,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 1.57fr 0.5fr 0.5fr; 
     gap: 20px;
-    width: 92%;
+    width: 90%;
     padding: 0 8%;
     box-sizing: border-box;
     margin-bottom: 20px;
