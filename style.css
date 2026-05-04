@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700&family=Space+Grotesk:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700&family=Space+Grotesk:wght@300;400;700&family=Stick&display=swap');
 
 html {
     scroll-behavior: smooth;
@@ -235,21 +235,6 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: block;
     object-fit: contain;
 }
-.page-lightning-container {
-    position: absolute;
-    top: 2.05%;
-    right: 12%;
-    width: 122px;
-    height: 100%;
-    z-index: 2; /* Sits above backgrounds (1) but below images (10) */
-    pointer-events: none;
-}
-.page-lightning-svg {
-    width: 100%;
-    height: 100%;
-    object-fit: fill; /* Allows it to stretch the full length of the page */
-    opacity: 0.6;
-}
 
 /* Footer */
 .footer {
@@ -318,7 +303,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     text-transform: uppercase;
     margin-bottom: 20px;
 }
-.hero-title h1 {
+.home-page .hero-title h1 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(60px, 10vw, 130px);
     text-transform: uppercase;
@@ -336,9 +321,12 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     left: 0;
     z-index: -1;
     color: rgba(var(--electric-blue));
-    filter: blur(25px);
-    opacity: 0.7;
 }
+.thunder-wrapper .glow-text {
+    filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.6));
+    animation: lightning-glow 2s ease-in-out 0.6s infinite alternate;
+}
+
 .hero-disclaimer {
     font-family: 'Manrope', sans-serif;
     color: rgba(var(--text-muted));
@@ -404,17 +392,16 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     background-image: url('media/animated-lightning-ss.png');
     background-repeat: no-repeat;
     background-size: 8040px 2234px;
-
-    animation: zap-strike 0.6s steps(9) forwards;
-
     position: absolute;
     top: 0;
     right: -10%;
     transform: scale(0.35);
     transform-origin: top;
+    pointer-events: none;
 
-    filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.6));
-    animation: zap-strike 0.6s steps(9) forwards, lightning-glow 0.6s ease-out forwards;
+    animation: 
+        zap-strike 0.6s steps(9) forwards,
+        lightning-glow 2s ease-in-out 0.6s infinite alternate;
 }
 @keyframes zap-strike {
     from {
@@ -438,7 +425,23 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.6)) brightness(1.1);
     }
 }
-#highlights h2, #gallery h2, .philosophy h2, #skills h2 {
+
+.page-lightning-container {
+    position: absolute;
+    top: 15%;
+    height: 76.6%;
+    right: 12%;
+    z-index: 2;
+    pointer-events: none;
+}
+.page-lightning-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* Allows it to stretch the full length of the page */
+    opacity: 0.6;
+}
+
+.home-page #highlights h2, #gallery h2, .philosophy h2, #skills h2 {
     font-family: 'Manrope', sans-serif;
     font-size: clamp(40px, 6vw, 75px);
     line-height: 1;
@@ -448,11 +451,15 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 
 /* Project Highlights */
 #highlights {
+    width: 100%;
     background-color: rgba(var(--electric-blue), 0.15);
-    padding-top: 150px;
+    padding: 150px 8%;
 }
 .project-item {
     margin-bottom: 100px;
+}
+#highlights .section-header h2 {
+    padding-left: 0;
 }
 .project-item h3 {
     font-family: 'Space Grotesk', sans-serif;
@@ -460,7 +467,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     line-height: 1;
     text-transform: uppercase;
     font-weight: 400;
-    color: rgba(255, 255, 255);
+    color: rgba(var(--text-white));
 }
 .project-item p {
     font-family: 'Manrope', sans-serif;
@@ -512,6 +519,9 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 
 /* Gallery */
+#gallery .section-header h2 {
+    padding-left: 0;
+}
 .gallery-scroll {
     overflow: hidden;
     /* Hides the images that are "off-screen" */
@@ -575,12 +585,12 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 
 /* Philosophy */
 .philosophy {
-    background-color: rgba(77, 117, 216, 0.15);
+    background-color: rgba(var(--electric-blue), 0.15);
     padding-bottom: 150px;
 }
 .philosophy-text {
     font-family: 'Manrope', sans-serif;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(var(--text-white), 0.7);
     font-size: 24px;
     max-width: 800px;
     line-height: 1.5;
@@ -725,26 +735,6 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     pointer-events: none;
 }
 
-/* Responsive Mobile Fixes */
-@media (max-width: 768px) {
-
-    .section,
-    .navbar {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
-    .skills-grid {
-        grid-template-columns: 1fr;
-        width: 100%;
-    }
-
-    .hero-graphic {
-        opacity: 0.2;
-        right: -10%;
-    }
-}
-
 /* ==========================================================================
    HIGHLIGHT 1 - POSTER DESIGN (Visual Identity)
    ========================================================================== */
@@ -815,31 +805,34 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 .highlight1-page .page-lightning-container {
     position: absolute;
     top: 0;
-    height: 91.85%;
-    right: 4.7%;
+    right: 7.5%;
+    height: 91.9%;
     z-index: 1;
     pointer-events: none;
 }
 
 /* Project Hero Layout */
 .project-hero {
-    height: 80vh;
+    height: fit-content;
     display: flex;
     align-items: center;
-    padding-top: 0px;
-    padding-bottom: 45px;
+    padding: 105px 8% 45px 8%;
+    position: relative;
+    z-index: 5;
 }
 /* View All Portfolio Highlights */
-.highlight1-page .back-link {
+.back-link {
     font-family: 'Manrope', sans-serif;
-    font-size: 15;
-    color: rgba(var(--vivid-purple), 0.7);
+    font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 400;
     text-decoration: none;
     display: block;
     margin-bottom: 40px;
+}
+.highlight1-page .back-link {
+    color: rgba(var(--vivid-purple), 0.7);
 }
 .back-link img {
     width: 10px;
@@ -856,32 +849,28 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 .highlight1-page .back-link:hover {
     color: rgba(var(--vivid-purple), 1);
 }
-
-/* Project Detail */
 .project-meta {
     font-family: 'Manrope', sans-serif;
-    font-size: clamp(60px, 10vw, 15);
+    font-size: 15px;
     color: rgba(var(--text-muted));
     letter-spacing: 3px;
     text-transform: uppercase;
     margin-top: 90px;
+    margin-bottom: 20px;
     margin-bottom: 40px;
 }
-
-/* Hero Title */
 .hero-title h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(60px, 10vw, 120px);
+    font-size: 125px;
     text-transform: uppercase;
     line-height: 1;
     margin: 0;
 }
 .project-category h1 {
-    font-size: clamp(30px, 10vw, 90px);
+    margin-top: 20px;
+    font-size: 100px;
     font-weight: 300;
 }
-
-/* Scroll to Explore */
 @keyframes arrowBounce {
     0%, 100% {
         transform: translateY(0);
@@ -905,6 +894,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     letter-spacing: 3px;
     font-size: 15px;
     margin-top: 40px;
+    padding-bottom: 95px;
     font-weight: 300;
 }
 .scroll-link {
@@ -1072,18 +1062,18 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     color: rgba(var(--text-white), 0.8);
     font-weight: 300;
 }
-.highlight1-page .proccess-work-text {
+.highlight1-page .process-work-text {
     flex: 1;
     max-width: 500px;
 }
-.proccess-work-text h3 {
+.process-work-text h3 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 25px;
     text-transform: uppercase;
     font-weight: 300;
     margin-bottom: 20px;
 }
-.proccess-work-text p {
+.process-work-text p {
     font-family: 'Manrope', sans-serif;
     color: rgba(var(--text-muted));
     font-size: 20px;
@@ -1144,7 +1134,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: block;
     object-fit: cover;
 }
-.proccess-work-text.reverse {
+.process-work-text.reverse {
     text-align: right;
 }
 
@@ -1243,12 +1233,6 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     background-image: linear-gradient(rgba(var(--bg-color), 0.6), rgba(var(--bg-color), 1)), url('media/h1-background.png');
 }
 
-/* Responsive Fix */
-@media (max-width: 900px) {
-    .project-stats { grid-template-columns: 1fr 1fr; gap: 30px; }
-    .narrative-row, .narrative-row.reverse { flex-direction: column; gap: 40px; }
-}
-
 /* ==========================================================================
    HIGHLIGHT 2 - SHORT DOCUMENTARY (The Quiet Game)
    ========================================================================== */
@@ -1319,23 +1303,15 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 .highlight2-page .page-lightning-container {
     position: absolute;
     top: 0;
-    height: 88.1%;
-    right: 4.4%;
+    right: 7.5%;
+    height: 88.13%;
     z-index: 1;
     pointer-events: none;
 }
 
 /* View All Portfolio Highlights */
 .highlight2-page .back-link {
-    font-family: 'Manrope', sans-serif;
-    font-size: 15;
     color: rgba(var(--burnt-orange), 0.7);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 400;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 40px;
 }
 .highlight2-page .back-link:hover {
     color: rgba(var(--burnt-orange), 1);
@@ -1351,7 +1327,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 
 /* Production Output */
 .highlight2-page .production-output {
-    padding: 100px 0 120px 8%;
+    padding: 120px 0 100px 8%;
     width: 245%;
 }
 .video-hero-container {
@@ -1374,16 +1350,16 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     width: 100%;
     display: block;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
-    filter: brightness(1);
+    filter: brightness(0.8);
 }
 .production-video:hover .thumbnail-img {
-    filter: brightness(0.7);
+    filter: brightness(0.5);
     transform: scale(1.02);
 }
-.vid-btn {
+.highlight2-page .vid-btn {
     padding: 12px 24px;
     font-family: 'Manrope', sans-serif;
-    color: rgba(var(--electric-blue));
+    color: rgba(var(--burnt-orange));
     background-color: rgba(var(--text-white));
     border-radius: 30px;
     font-size: 20px;
@@ -1403,18 +1379,18 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 .production-video:hover .vid-btn {
     opacity: 1;
-    background-color: rgba(var(--electric-blue));
+    background-color: rgba(var(--burnt-orange));
     color: rgba(var(--text-white));
     transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* The Execution */
-.highlight2-page .proccess-work {
+.highlight2-page .process-work {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.highlight2-page .proccess-work-text {
+.highlight2-page .process-work-text {
     flex: 1;
     max-width: 500px;
 }
@@ -1422,7 +1398,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 1.1fr 1.5fr; 
     gap: 50px; 
-    padding: 0 8% 100px 0;
+    padding: 0 3.6% 100px 0;
     align-items: stretch;
 }
 .highlight2-page .execution-img-1 {
@@ -1430,10 +1406,14 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     flex-direction: column;
     gap: 50px;
 }
+.highlight2-page .process-work img {
+    border-radius: 5px;
+}
 .highlight2-page .execution-img-1 img {
     width: 100%;
     height: auto;
     object-fit: cover;
+    border-radius: 5px;
 }
 .highlight2-page .execution-img-1 img:first-child {
     grid-column: span 2;
@@ -1450,6 +1430,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     height: auto;
     display: block;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 /* Next Project */
@@ -1475,12 +1456,6 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     background-size: cover;
     background-position: center top;
     background-image: linear-gradient(rgba(var(--bg-color), 0), rgba(var(--bg-color), 1)), url('media/h2-background.png');
-}
-
-/* Responsive Fix */
-@media (max-width: 900px) {
-    .project-stats { grid-template-columns: 1fr 1fr; gap: 30px; }
-    .narrative-row, .narrative-row.reverse { flex-direction: column; gap: 40px; }
 }
 
 /* ==========================================================================
@@ -1553,23 +1528,15 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 .highlight3-page .page-lightning-container {
     position: absolute;
     top: 0;
-    height: 91.85%;
-    right: 4.7%;
+    right: 7.5%;
+    height: 91.84%;
     z-index: 1;
     pointer-events: none;
 }
 
 /* View All Portfolio Highlights */
 .highlight3-page .back-link {
-    font-family: 'Manrope', sans-serif;
-    font-size: 15;
     color: rgba(var(--gold-yellow), 0.7);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 400;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 40px;
 }
 .highlight3-page .back-link:hover {
     color: rgba(var(--gold-yellow), 1);
@@ -1585,7 +1552,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 
 /* Production Output */
 .highlight3-page .production-output {
-    padding: 100px 8% 150px;
+    padding: 120px 8%;
     width: 92%;
 }
 .production-output-img {
@@ -1619,10 +1586,10 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 
 /* The Execution */
-.proccess-work {
+.process-work {
     width: 92%;
 }
-.highlight3-page .proccess-work-text {
+.highlight3-page .process-work-text {
     max-width: 100%;
 }
 .execution-big-idea {
@@ -1641,21 +1608,21 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: block;
     border-radius: 5px;
 }
-.execution-design-proccess {
+.execution-design-process {
     display: block;
     padding: 0 8% 50px 0;
     width: 100%;
 }
-.proccess-row {
+.process-row {
     display: flex;
     gap: 50px;
     margin-bottom: 60px;
 }
-.proccess-row img {
+.process-row img {
     width: 100%;
     height: auto;
 }
-.execution-design-proccess h4 {
+.execution-design-process h4 {
     margin-bottom: 20px;
     font-family: 'Manrope', sans-serif;
     text-transform: uppercase;
@@ -1684,7 +1651,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     width: 100%;
     height: auto;
 }
-.execution-design-proccess img {
+.execution-design-process img {
     display: block;
     object-fit: cover;
     border-radius: 5px;
@@ -1715,12 +1682,6 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     background-image: linear-gradient(rgba(var(--bg-color), 0), rgba(var(--bg-color), 1)), url('media/h3-background.png');
 }
 
-/* Responsive Fix */
-@media (max-width: 900px) {
-    .project-stats { grid-template-columns: 1fr 1fr; gap: 30px; }
-    .narrative-row, .narrative-row.reverse { flex-direction: column; gap: 40px; }
-}
-
 /* ==========================================================================
    Gallery
    ========================================================================== */
@@ -1728,19 +1689,18 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 .gallery-page .page-lightning-container {
     position: absolute;
     top: 0;
-    height: 91.28%;
-    right: 5.7%;
+    height: 91.45%;
+    right: 7.8%;
     z-index: 1;
     pointer-events: none;
 }
 
 /* Hero Section */
 .gallery-intro {
-    height: 65vh;
+    height: auto;
     display: flex;
     align-items: center;
-    padding: 0 8%;
-    margin: 0;
+    padding: 255px 8% 45px 8%;
     position: relative;
 }
 .gallery-intro h1 {
@@ -1759,15 +1719,6 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     font-weight: 300;
 }
 
-.section-header-top h2 {
-    font-family: 'Manrope', sans-serif;
-    color: rgba(var(--text-white));
-    font-size: clamp(35px, 6vw, 70px);
-    text-transform: uppercase;
-    margin-top: 0px;
-    margin-bottom: 60px;
-    padding: 0 8%;
-}
 .section-header h2 {
     font-family: 'Manrope', sans-serif;
     color: rgba(var(--text-white));
@@ -1827,6 +1778,52 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     width: 100%;
     overflow: hidden;
 }
+.production-video {
+    width: 100%; 
+    height: auto;
+    display: block;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.thumbnail-img {
+    width: 100%;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
+    filter: brightness(0.8);
+}
+.production-video:hover .thumbnail-img {
+    filter: brightness(0.5);
+    transform: scale(1.02);
+}
+.vid-btn {
+    padding: 12px 24px;
+    font-family: 'Manrope', sans-serif;
+    color: rgba(var(--electric-blue));
+    background-color: rgba(var(--text-white));
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    
+    opacity: 1;
+    transition: all 0.3s ease;
+    z-index: 3;
+    pointer-events: none;
+}
+.production-video:hover .vid-btn {
+    opacity: 1;
+    background-color: rgba(var(--electric-blue));
+    color: rgba(var(--text-white));
+    transform: translate(-50%, -50%) scale(1.1);
+}
 .img-description h4 {
     margin-top: 24px;
     margin-bottom: 0;
@@ -1863,7 +1860,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     grid-template-columns: 0.93fr 1fr 1.15fr;
     width: 90%;
     padding: 0 8%;
-    margin-bottom: 80px;
+    margin-bottom: 160px;
     box-sizing: border-box;
     align-items: start;
     gap: 50px;
@@ -1882,7 +1879,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     text-transform: uppercase;
     padding: 0 8%;
 }
-.section-grid {
+.section-grid-studio {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 90%;
@@ -1892,7 +1889,20 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     align-items: start;
     gap: 50px;
 }
+.section-grid-dance {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+    padding: 0 8%;
+    margin-bottom: 160px;
+    box-sizing: border-box;
+    align-items: start;
+    gap: 50px;
+}
 
+.photo-media-section {
+    padding-bottom: 130px;
+}
 .section-grid-photo-1 {
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 1.34fr; 
@@ -1939,107 +1949,267 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     transition: transform 0.3s ease;
 }
 
-/* CTA Section Container */
-.cta-content {
-    position: relative;
-    text-align: center;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 700px;
-}
-/* Grouping the Header Text */
-.cta-head-group {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    padding: 0 8%;
-}
-.cta-tagline {
-    font-family: 'Manrope', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    color: rgba(var(--text-muted));
-    font-size: 15px;
-    margin-bottom: 20px;
-}
-.cta-line {
-    width: 50%;
-    height: 1px;
-    background: rgba(var(--text-muted));
-    margin: 0 auto 60px auto;
-}
-.cta-main {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 50px;
-    text-transform: uppercase;
-    font-weight: 300;
-}
-/* Buttons */
-.cta-buttons {
-    position: relative;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-    align-items: center;
-}
-.cta-buttons a {
-    text-decoration: none;
-}
-.cta-content .btn {
-    border: 1px solid rgba(var(--text-muted));
-    border-radius: 15px;
-    padding: 15px;
-    min-width: 280px;
-    font-family: 'Manrope', sans-serif;
-    text-transform: uppercase;
-    font-size: 15px;
-    letter-spacing: 1px;
-    background: rgba(var(--electric-blue), 0.1);
-    color: rgba(var(--text-muted));
-    transition: 0.3s;
-}
-.cta-content .btn:hover {
-    border-color: rgba(125, 143, 193);
-    background: rgba(var(--electric-blue), 0.05);
-    color: rgba(125, 143, 193);
-}
-/* Background Image */
-.cta-bg {
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+
+.about-page .page-lightning-container {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 85%;
-    background-image: url('media/footer-home.svg');
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -1;
+    top: 16.5%;
+    height: 69.4%;
+    right: 15%;
+    z-index: 1;
     pointer-events: none;
 }
 
-/* Responsive Mobile Fixes */
-@media (max-width: 768px) {
+/* Hero Section */
+.about-page .hero {
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding: 255px 8% 210px 8%;
+    position: relative;
+}
+.about .hero-title h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(60px, 10vw, 130px);
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0;
+}
+/* The Thunder Glow */
+.thunder-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.glow-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    color: rgba(var(--electric-blue));
+    filter: blur(25px);
+    opacity: 0.7;
+}
+/* Kanji (Loi) Character */
+.kanji-container {
+    position: absolute;
+    right: 15%;
+    bottom: 20%; /* Adjust to sit vertically where you want it */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the lightning and text over the Kanji */
+    z-index: 5;
+}
+/* Lightning Image */
+.lightning-top {
+    position: absolute;
+    bottom: 100%;
+    left: 54%;
+    width: 1px;
+    height: 1px;
+    z-index: 3;
+}
+.about-lightning {
+    width: 135px; 
+    height: auto;
+    
+    /* Positioning relative to the anchor */
+    position: absolute;
+    bottom: 0;
+    transform: translateY(2.8%);
+    margin-bottom: -30px;
 
-    .section,
-    .navbar {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
+    filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.6));
+    animation: lightning-glow 2s ease-in-out infinite alternate;
+    
+    pointer-events: none;
+    z-index: 3;
+}
+/* Subline: "Powered by thunder" */
+.thunder-sub {
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    color: rgba(var(--text-muted));
+    font-weight: 300;
+    letter-spacing: 1px;
 
-    .skills-grid {
-        grid-template-columns: 1fr;
-        width: 100%;
-    }
+    transform: rotate(-3deg); 
+    margin-bottom: 40px;     
+    margin-right: 55px; 
+    
+    z-index: 2;
+    pointer-events: none;
+}
+/* The Large Kanji character 雷 */
+.kanji-wrapper {
+    position: relative;
+    font-family: 'Stick', sans-serif;
+    font-size: 350px;
+    line-height: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.kanji-wrapper .glow-text {
+    position: absolute;
+    z-index: -1;
+    color: rgba(var(--electric-blue));
+    filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.6));
+    animation: lightning-glow 2s ease-in-out infinite alternate;
+}
+.about-page .bio-text h2, #experiences h2, .philosophy h2, .skills-tools h2 {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(40px, 6vw, 75px);
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
 
-    .hero-graphic {
-        opacity: 0.2;
-        right: -10%;
-    }
+/* Bio */
+.bio-section {
+    background-color: rgba(var(--electric-blue), 0.15);
+    padding: 80px 28% 100px 8%;
+}
+.bio-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 2fr; 
+    grid-template-areas:
+        "image content"
+        "bio text";
+    gap: 50px;
+    align-items: center;
+}
+.bio-image {
+    grid-area: image;
+}
+.bio-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+}
+.bio-content {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Manrope', sans-serif;
+    color: rgba(var(--text-white), 0.8);
+    font-size: 25px;
+    max-width: 800px;
+    line-height: 1.5;
+    font-weight: 300;
+}
+.kanji-small {
+    font-size: 20px;
+}
+
+/* Skills & Tools */
+.about-page .skills-tools {
+    padding: 60px 8% 135px 8%;
+}
+.about-page .skill-block, .tool-block {
+    padding-top: 20px;
+}
+.about-page .skill-block {
+    display: flex;
+    flex-direction: column;
+    width: fit-content; 
+}
+.about-page .skills-list {
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    border-bottom: 1.5px solid rgba(62, 79, 121, 0.5);
+}
+.about-page .skills-list:first-of-type {
+    border-top: 1.5px solid rgba(62, 79, 121, 0.5);
+}
+.about-page .skills-list p, .tools-grid p {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 300;
+    color: rgba(125, 143, 193);
+    font-size: 25px;
+    text-align: center;
+}
+.about-page .tools-grid {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.about-page .tools-grid img {
+    height: 57.5px;
+    width: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+.about-page .tools-grid img:hover {
+    transform: translateY(-5px); /* Adds a little "interactive" feel */
+}
+
+/* Philosophy */
+.about-page .philosophy {
+    background-color: rgba(var(--electric-blue), 0.15);
+    padding: 95px 8% 125px 8%;
+}
+.about-page .philosophy-text {
+    font-family: 'Manrope', sans-serif;
+    color: rgba(var(--text-white), 0.7);
+    font-size: 25px;
+    max-width: 800px;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+/* Experiences */
+.experiences-section {
+    padding: 50px 0 90px 0;
+}
+.experiences-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 60px 0;
+    
+    background: rgba(var(--bg-color), 1);
+    
+    position: relative;
+    z-index: 10;
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 30%,
+        black 85%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 15%,
+        black 85%,
+        transparent 100%
+    );
+}
+.about-page .scroll-track img {
+    height: 150px;
+    width: auto;
+    flex-shrink: 0;
+    pointer-events: none;
+    user-select: none;
+}
+.about-page .scroll-track img[alt="spacer"] {
+    height: 15px;
+    margin: 0 30px;
+}
+.about-page .scroll-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+}
+.experiences-scroll:hover .scroll-track {
+    animation-play-state: paused;
 }
