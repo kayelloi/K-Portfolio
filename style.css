@@ -1377,7 +1377,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     z-index: 3;
     pointer-events: none;
 }
-.production-video:hover .vid-btn {
+.highlight2-page .production-video:hover .vid-btn {
     opacity: 1;
     background-color: rgba(var(--burnt-orange));
     color: rgba(var(--text-white));
