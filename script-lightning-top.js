@@ -19,7 +19,7 @@ function adjustLightningHeight() {
 
     // 2. Get the top of the CTA section
     const endRect = endSection.getBoundingClientRect();
-    const endPos = (endRect.top + scrollY) + 110;
+    const endPos = (endRect.top + scrollY) + 105;
 
     // 3. Calculate and apply height
     const totalHeight = endPos - startPos;
