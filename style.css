@@ -794,11 +794,11 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     right: 5.6%;
     z-index: 1;
     pointer-events: none;
-    animation: glow-pulse-highlights 3s ease-in-out infinite alternate;
+    animation: glow-pulse-highlight1 3s ease-in-out infinite alternate;
 }
-@keyframes glow-pulse-highlights {
-    from { filter: drop-shadow(0 0 5px  rgba(var(--electric-blue), 0.5)); }
-    to   { filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.9)); }
+@keyframes glow-pulse-highlight1 {
+    from { filter: drop-shadow(0 0 5px  rgba(var(--vivid-purple), 0.5)); }
+    to   { filter: drop-shadow(0 0 15px rgba(var(--vivid-purple), 0.9)); }
 }
 
 /* Project Hero Layout */
@@ -806,7 +806,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     height: fit-content;
     display: flex;
     align-items: center;
-    padding: 105px 8% 45px 8%;
+    padding: 105px 15% 45px 8%;
     position: relative;
     z-index: 5;
 }
@@ -851,14 +851,14 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 .hero-title h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 125px;
+    font-size: 115px;
     text-transform: uppercase;
     line-height: 1;
     margin: 0;
 }
 .project-category h1 {
     margin-top: 20px;
-    font-size: 100px;
+    font-size: 85px;
     font-weight: 300;
 }
 @keyframes arrowBounce {
@@ -927,7 +927,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     align-items: center;
     gap: 0px;
     margin-bottom: 0px;
-    padding: 0 8% 0px 0;
+    padding: 0 15% 0px 0;
 }
 .output-row.reverse {
     flex-direction: row-reverse;
@@ -980,7 +980,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 1fr 2fr; 
     gap: 80px;
-    padding: 0px 8% 0 0;
+    padding: 0px 15% 0 0;
     align-items: start;
 }
 .narrative-heading h3 {
@@ -1023,7 +1023,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 
 /* Visual Break */
 .visual-break img {
-    width: 92%;
+    width: 85%;
     border-radius: 5px;
 }
 
@@ -1032,7 +1032,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 3fr 1fr; 
     gap: 80px;
-    padding: 0px 8% 0 0;
+    padding: 0px 15% 0 0;
     align-items: start;
 }
 .execution-heading h3 {
@@ -1074,7 +1074,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 1.5fr 2.5fr; 
     gap: 150px;
-    padding: 0 8% 50px 0;
+    padding: 0 15% 50px 0;
     align-items: center;
 }
 .highlight1-page .execution-img-1 {
@@ -1110,7 +1110,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 2.5fr 1.5fr; 
     gap: 0px;
-    padding: 0 8% 50px 0;
+    padding: 0 15% 50px 0;
     align-items: center;
 }
 .highlight1-page .execution-img-2 {
@@ -1226,19 +1226,25 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 /* Widescreen */
 @media (min-width: 1400px) {
     /* If main content is 1400px wide, 50% - 700px is the edge. */
+    .project-hero {
+        padding: 105px 8% 45px 8%;
+    }
+    .hero-title h1 {
+        font-size: 125px;
+    }
+    .project-category h1 {
+        font-size: 92px;
+    }
+
     .highlight1-page .project-stats {
         grid-template-columns: 0.3fr 0.5fr 0.8fr 1fr 0.3fr;
     }
-
-    .highlight1-page .output-img img {
-        width: 70%;
-    }
-
+    
     .highlight1-page .execution-part-1 {
-        grid-template-columns: 1.8fr 2.5fr; 
+        grid-template-columns: 1.8fr 2fr;
     }
     .highlight1-page .execution-part-2 {
-        grid-template-columns: 2.5fr 2.1fr; 
+        grid-template-columns: 2.5fr 2.1fr;
     }
 }
 
@@ -1315,7 +1321,11 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     right: 6%;
     z-index: 1;
     pointer-events: none;
-    animation: glow-pulse-highlights 3s ease-in-out infinite alternate;
+    animation: glow-pulse-highlight2 3s ease-in-out infinite alternate;
+}
+@keyframes glow-pulse-highlight2 {
+    from { filter: drop-shadow(0 0 5px  rgba(var(--burnt-orange), 0.5)); }
+    to   { filter: drop-shadow(0 0 15px rgba(var(--burnt-orange), 0.9)); }
 }
 
 /* View All Portfolio Highlights */
@@ -1336,7 +1346,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 
 /* Production Output */
 .highlight2-page .production-output {
-    padding: 120px 0 100px 8%;
+    padding: 120px 15% 100px 8%;
     width: 245%;
 }
 .video-hero-container {
@@ -1407,7 +1417,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 1.1fr 1.5fr; 
     gap: 50px; 
-    padding: 0 3.6% 100px 0;
+    padding: 0 14.5% 100px 0;
     align-items: stretch;
 }
 .highlight2-page .execution-img-1 {
@@ -1429,9 +1439,9 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 .highlight2-page .execution-part-2 {
     display: grid;
-    grid-template-columns: 1.1fr 1.5fr; 
+    grid-template-columns: 1.2fr 1.5fr; 
     gap: 50px;
-    padding: 0 8% 50px 0;
+    padding: 0 15% 50px 0;
     align-items: center;
 }
 .highlight2-page .execution-img-2 img {
@@ -1548,7 +1558,11 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     right: 5.6%;
     z-index: 1;
     pointer-events: none;
-    animation: glow-pulse-highlights 3s ease-in-out infinite alternate;
+    animation: glow-pulse-highlight3 3s ease-in-out infinite alternate;
+}
+@keyframes glow-pulse-highlight3 {
+    from { filter: drop-shadow(0 0 5px  rgba(var(--gold-yellow), 0.5)); }
+    to   { filter: drop-shadow(0 0 15px rgba(var(--gold-yellow), 0.9)); }
 }
 
 /* View All Portfolio Highlights */
@@ -1562,15 +1576,15 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 /* Stats Bar */
 .highlight3-page .project-stats {
     display: grid;
-    grid-template-columns: 0.9fr 0.8fr 1.1fr 1.5fr 0.3fr;
+    grid-template-columns: 1.1fr 0.8fr 1.1fr 1.3fr 0.3fr;
     padding: 50px 8% 35px;
     background-color: rgba(var(--gold-yellow), 0.05);
 }
 
 /* Production Output */
 .highlight3-page .production-output {
-    padding: 120px 8%;
-    width: 92%;
+    padding: 120px 20% 120px 8%;
+    width: 100%;
 }
 .production-output-img {
     width: 100%;
@@ -1604,7 +1618,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 
 /* The Execution */
 .process-work {
-    width: 92%;
+    width: 99%;
 }
 .highlight3-page .process-work-text {
     max-width: 100%;
@@ -1613,21 +1627,21 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding: 0 0 50px 0;
+    padding: 0 15% 50px 0;
     width: 100%;
 }
 .big-idea {
     width: 100%;
 }
 .big-idea img {
-    width: 92%;
+    width: 100%;
     height: auto;
     display: block;
     border-radius: 5px;
 }
 .execution-design-process {
     display: block;
-    padding: 0 8% 50px 0;
+    padding: 0 15% 50px 0;
     width: 100%;
 }
 .execution-design-process h4 {
@@ -1682,7 +1696,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
-    margin-bottom: 60px;
+    margin-bottom: 0px;
     width: 100%;
 }
 .process-row-tc img {
@@ -1775,7 +1789,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 2.03fr 0.6fr; 
     width: 90%;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
     box-sizing: border-box;
     align-items: start;
     gap: 50px;
@@ -1828,7 +1842,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 1.15fr 1fr;
     width: 90%;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
     margin-bottom: 80px;
     box-sizing: border-box;
     align-items: start;
@@ -1906,7 +1920,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 0.5fr 1.043fr;
     width: 90%;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
     margin-bottom: 80px;
     box-sizing: border-box;
     align-items: start;
@@ -1920,7 +1934,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: 1.083fr 1fr 0.99fr;
     width: 90%;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
     margin-bottom: 160px;
     box-sizing: border-box;
     align-items: start;
@@ -1938,13 +1952,13 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     color: rgba(var(--text-white), 0.8);
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
 }
 .section-grid-studio {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 90%;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
     margin-bottom: 80px;
     box-sizing: border-box;
     align-items: start;
@@ -1954,7 +1968,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 90%;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
     margin-bottom: 160px;
     box-sizing: border-box;
     align-items: start;
@@ -1969,7 +1983,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     grid-template-columns: 0.5fr 0.5fr 1.34fr; 
     gap: 20px;
     width: 90%;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
     box-sizing: border-box;
     margin-bottom: 20px;
 }
@@ -1984,7 +1998,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     grid-template-columns: repeat(2, 1fr); 
     gap: 20px;
     width: 90%;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
     box-sizing: border-box;
     margin-bottom: 20px;
 }
@@ -1999,7 +2013,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     grid-template-columns: 1.57fr 0.5fr 0.5fr; 
     gap: 20px;
     width: 90%;
-    padding: 0 8%;
+    padding: 0 10% 0 8%;
     box-sizing: border-box;
     margin-bottom: 20px;
 }
