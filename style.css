@@ -332,6 +332,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     color: rgba(var(--text-muted));
     font-size: 15px;
     letter-spacing: 1px;
+    line-height: 2;
     margin-top: 20px;
     font-weight: 300;
 }
