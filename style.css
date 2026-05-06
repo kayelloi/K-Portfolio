@@ -369,7 +369,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     pointer-events: none;
 
     animation: 
-        zap-strike 0.6s steps(9) forwards,
+        zap-strike 0.6s steps(9) 0.5s forwards,
         zap-glow 3s 0.6s infinite;
 }
 @keyframes zap-strike {
