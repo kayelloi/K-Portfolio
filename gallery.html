@@ -341,11 +341,9 @@
 
     <script>
         document.getElementById('backToTop').addEventListener('click', function (e) {
-            e.preventDefault(); // Stops the '#' from appearing in your URL
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            e.preventDefault();
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
         });
     </script>
 </body>
