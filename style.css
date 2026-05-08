@@ -1122,6 +1122,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     height: auto;
     display: block;
     object-fit: cover;
+    border-radius: 5px;
 }
 .process-work-text.reverse {
     text-align: right;
@@ -2305,13 +2306,12 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         padding: 20px 6%;
     }
     .logo {
-        order: 1;
+        order: 2;
     }
     .nav-icon {
-        order: 2;
+        order: 1;
         display: flex;
         align-items: center;
-        gap: 15px;
     }
     .hamburger {
         display: flex;
@@ -2355,21 +2355,32 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     .nav-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
     .nav-toggle:checked ~ .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-    .dropdown-menu {
+    .dropdown-menu,
+    .highlight1-page .dropdown-menu,
+    .highlight2-page .dropdown-menu,
+    .highlight3-page .dropdown-menu {
         position: static;
         display: block;
         visibility: visible;
         opacity: 1;
         padding: 15px 0 0 0;
-        background: transparent;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
         border: none;
         text-align: left;
         transform: none;
     }
-    .dropdown-menu li a {
+    .dropdown-menu li a,
+    .highlight1-page .dropdown-menu li a,
+    .highlight2-page .dropdown-menu li a,
+    .highlight3-page .dropdown-menu li a {
         font-size: 13px !important;
         color: rgba(var(--text-muted)) !important;
         margin: 0;
+    }
+    .nav-toggle:checked ~ .nav-links {
+        right: 0;
     }
 
     /* Page Lightning */
@@ -2383,19 +2394,33 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         justify-content: space-between;
         padding: 30px 6%;
     }
-
     .footer-bottom span, .back-to-top {
         font-size: 12px; /* Smaller text for mobile fit */
     }
 
-    /* Home */
+    /* HOME */
     .hero-container {
         opacity: 0;
         animation: fade-in-delayed 1.5s ease-out 2.0s forwards;
     }
     .lightning-zap {
-        transform: scale(0.22) translateX(50%);
-        right: -35%;
+        position: absolute;
+        left: 50%;
+    top: 0px; 
+    
+    /* 2. The Fix: 
+       First, translate(-50%) pulls the element back half its own width to center it.
+       Second, scale(0.25) shrinks it. 
+       KEEP THEM IN THIS ORDER. */
+    transform: translateX(-50%) scale(0.3);
+    
+    /* 3. Cleanup: ensure 'right' is not fighting with 'left' */
+    right: auto;
+    margin: 0;
+        
+        z-index: 10;
+        pointer-events: none;
+
         animation: zap-strike 0.6s steps(9) forwards,
                    zap-vanish 0.1s ease-out 1.8s forwards;
     }
@@ -2406,15 +2431,32 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         to { opacity: 0; visibility: hidden; }
     }
     .hero {
-        height: 60vh;
-        padding-top: 150px;
-        padding-bottom: 100px; 
+        height: 90vh;
+        padding: 0 6%;
+
+        position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: center; 
+        text-align: left;
+    }
+    .hero::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: flex-start;
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(var(--electric-blue), 0.15)
+        );
+        pointer-events: none;
+        z-index: 0;
     }
     .home-page .hero-title h1 {
-        font-size: 75px; 
+        font-size: 85px; 
         line-height: 0.95;
         margin: 10px 0;
     }
@@ -2422,7 +2464,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         padding-top: 10px;
     }
     .hero-tagline {
-        font-size: 8px;
+        font-size: 10px;
         letter-spacing: 2px;
         margin-bottom: 5px;
         opacity: 0.8;
@@ -2485,8 +2527,8 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     .skills-grid {
         display: flex;
         flex-direction: row;
-        gap: 20px;
-        justify-content: space-between;
+        gap: 69.7px;
+        justify-content: left;
         width: 100%;
     }
     .tools-group {
@@ -2495,13 +2537,13 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         gap: 11.5px;
     }
     .skills-group p, .tool p {
-        font-size: 15px; /* Scaled down to fit side-by-side */
+        font-size: 15px;
     }
     .tool img {
         width: 38px;
     }
 
-    /* CTA */
+    /* Call-to-Action */
     .cta-main {
         padding-bottom: 25px;
         font-size: 30px;
@@ -2514,66 +2556,123 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         width: 80%;
     }
 
-    /* --- NEXT PROJECT --- */
+    /* --- HIGHLIGHT PAGES --- */
+    .project-hero {
+        padding: 100px 6% 70px 6%;
+    }
+    .back-link {
+        font-size: 13px;
+        padding-bottom: 20px;
+    }
+    .hero-title h1 {
+        font-size: 75px;
+    }
+    .project-category h1 {
+        font-size: 50px;
+    }
+    .project-meta {
+        margin-top: 40px;
+        font-size: 13px;
+    }
+
+    /* Stats Bar */
+    .highlight1-page .project-stats, .highlight2-page .project-stats, .highlight3-page .project-stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 30px 6%;
+    }
+    .highlight1-page .stat-item p, .highlight2-page .stat-item p, .highlight3-page .stat-item p {
+        font-size: 13px;
+    }
+    .highlight1-page .stat-item label, .highlight2-page .stat-item label, .highlight3-page .stat-item label {
+        font-size: 11px;
+    }
+
+    /* --- Next Project --- */
     .np-main {
-        font-size: 36px;
+        font-size: 40px;
     }
     .np-tagline {
         font-size: 13px;
     }
 
-    /* --- HIGHLIGHT PAGES HERO --- */
-    .project-hero {
-        padding: 100px 6% 30px 6%;
-    }
-    .hero-title h1 {
-        font-size: clamp(36px, 10vw, 60px);
-    }
-    .project-category h1 {
-        font-size: clamp(28px, 8vw, 48px);
-    }
-    .project-meta {
-        margin-top: 40px;
-        font-size: 11px;
-    }
-
-    /* --- STATS BAR --- */
-    .highlight1-page .project-stats,
-    .highlight2-page .project-stats,
-    .highlight3-page .project-stats {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        padding: 30px 6%;
-    }
-    .stat-item:last-child {
-        display: none;
-    }
-
-    /* --- NARRATIVE / EXECUTION GRIDS --- */
-    .narrative-text {
+    /* Highlight 1 */
+    .narrative-text, .execution-text, .highlight1-page .execution-part-1, .highlight1-page .execution-part-2, .output-row {
         grid-template-columns: 1fr;
-        gap: 20px;
+        display: flex;
+        flex-direction: column;
         padding: 0;
+        gap: 0px;
     }
-    .execution-text {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 0;
-    }
-    .output-row,
     .output-row.reverse {
         flex-direction: column;
+        text-align: left;
+        padding: 0 0 0 0;
     }
-    .output-img img {
+    .highlight1-page .reverse .quote {
+        border-left: 1px solid rgba(var(--vivid-purple), 1);
+        border-right: none;
+        padding: 0 0 0 20px;
+    }
+    .highlight1-page .quote {
+        font-size: 13px;
+        margin-bottom: 100px;
+    }
+    .output-text, .narrative-blurb, .execution-blurb, .process-work-text {
+        max-width: 100%;
+    }
+    .output-text p, .narrative-blurb p, .process-work-text p {
+        font-size: 16px;
+    }
+    .narrative-heading h3, .execution-heading h3{
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    .output-text h3, .process-work-text h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .output-img img, .visual-break img {
         width: 100%;
     }
-    .highlight1-page .execution-part-1,
-    .highlight1-page .execution-part-2,
-    .highlight2-page .execution-part-1,
-    .highlight2-page .execution-part-2 {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 0 0 40px 0;
+    .narrative-blurb h5 {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .narrative-blurb h4 {
+        font-size: 12px;
+    }
+    .narrative-blurb p {
+        font-size: 14px;
+    }
+    .execution-text {
+        display: flex;
+        flex-direction: column;
+    }
+    .execution-heading {
+        order: 1;
+    }
+    .execution-blurb {
+        order: 2;
+        padding-bottom: 20px;
+    }
+    .execution-blurb h5 {
+        font-size: 16px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    .highlight1-page .execution-part-2 {
+        display: flex;
+        flex-direction: column;
+    }
+    .highlight1-page .execution-img-2 {
+        order: 1;
+        padding-top: 100px;
+    }
+    .highlight1-page .process-work-text.reverse {
+        order: 2;
+        text-align: left;
+        margin-top: 10px;
     }
 
     /* --- GALLERY PAGE --- */
