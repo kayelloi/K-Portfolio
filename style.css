@@ -2555,6 +2555,17 @@ html.is-scrolling .flash-overlay {
     }
 
     /* Call-to-Action */
+    .cta-content {
+        padding: 100px 6% 80px 6%;
+        justify-content: flex-start;
+        min-height: auto;
+    }
+    .cta-head-group {
+        padding: 0;
+    }
+    .cta-tagline {
+        margin-top: 0;
+    }
     .cta-main {
         padding-bottom: 25px;
         font-size: 30px;
@@ -2565,6 +2576,7 @@ html.is-scrolling .flash-overlay {
     }
     .cta-line {
         width: 80%;
+        margin-bottom: 40px;
     }
 
     /* --- HIGHLIGHT PAGES --- */
@@ -2821,7 +2833,6 @@ html.is-scrolling .flash-overlay {
         overflow: hidden;
     }
 
-    .cta-content,
     .np-content {
         min-height: 480px;
     }
