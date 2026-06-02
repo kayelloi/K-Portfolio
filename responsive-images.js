@@ -79,14 +79,25 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      setupLazyImages();
-      deferHeavyDecor();
-    });
-  } else {
+  function runWhenIdle(fn) {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(fn, { timeout: 1500 });
+    } else {
+      setTimeout(fn, 1);
+    }
+  }
+
+  function init() {
     setupLazyImages();
     deferHeavyDecor();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      runWhenIdle(init);
+    });
+  } else {
+    runWhenIdle(init);
   }
 
   mobileMq.addEventListener('change', deferHeavyDecor);
