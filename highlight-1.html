@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krysten Loi | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link rel="icon" href="media/favicon-k.svg" type="image/svg+xml">
 </head>
@@ -89,7 +91,7 @@
             <section id="production-output" class="production-output section">
                 <div class="output-row reveal">
                     <div class="output-img">
-                        <img src="media/h1-p1.svg" alt="Identity Poster">
+                        <img src="media/pngs/h1-p1.png" alt="Identity Poster">
                     </div>
                     <div class="output-text">
                         <h3 class="white-text">Identity</h3>
@@ -102,7 +104,7 @@
 
                 <div class="output-row reverse reveal">
                     <div class="output-img">
-                        <img src="media/h1-p2.svg" alt="Control in Motion Poster">
+                        <img src="media/pngs/h1-p2.png" alt="Control in Motion Poster">
                     </div>
                     <div class="output-text">
                         <h3 class="white-text">Control in Motion</h3>
@@ -114,7 +116,7 @@
 
                 <div class="output-row reveal">
                     <div class="output-img">
-                        <img src="media/h1-p3.svg" alt="Refraction Poster">
+                        <img src="media/pngs/h1-p3.png" alt="Refraction Poster">
                     </div>
                     <div class="output-text">
                         <h3 class="white-text">Refraction</h3>
@@ -126,7 +128,7 @@
 
                 <div class="output-row reverse reveal">
                     <div class="output-img">
-                        <img src="media/h1-p4.svg" alt="Expansion Poster">
+                        <img src="media/pngs/h1-p4.png" alt="Expansion Poster">
                     </div>
                     <div class="output-text">
                         <h3 class="white-text">Expansion</h3>
@@ -155,7 +157,7 @@
                     </div>
                 </div>
                 <div class="visual-break reveal">
-                    <img src="media/h1-visual-break.svg" alt="Visual Break">
+                    <img src="media/pngs/h1-visual-break.png" alt="Visual Break">
                 </div>
             </section>
 
@@ -173,10 +175,10 @@
 
                 <div class="execution-part-1 reverse reveal">
                     <div class="execution-img-1">
-                        <img src="media/h1-p1-con-dev.svg" alt="Poster 1 - Concept Development">
-                        <img src="media/h1-p2-con-dev.svg" alt="Poster 2 - Concept Development">
-                        <img src="media/h1-p3-con-dev.svg" alt="Poster 3 - Concept Development">
-                        <img src="media/h1-p4-con-dev.svg" alt="Poster 4 - Concept Development">
+                        <img src="media/pngs/h1-p1-con-dev.png" alt="Poster 1 - Concept Development">
+                        <img src="media/pngs/h1-p2-con-dev.png" alt="Poster 2 - Concept Development">
+                        <img src="media/pngs/h1-p3-con-dev.png" alt="Poster 3 - Concept Development">
+                        <img src="media/pngs/h1-p4-con-dev.png" alt="Poster 4 - Concept Development">
                     </div>
                     <div class="process-work-text">
                         <h3 class="white-text">Lo-Fi Exploration</h3>
@@ -197,10 +199,10 @@
                             final decisions remained intentional and controlled.</p>
                     </div>
                     <div class="execution-img-2">
-                        <img src="media/h1-p1-ai-dev.svg" alt="Poster 1 - AI Development">
-                        <img src="media/h1-p2-ai-dev.svg" alt="Poster 2 - AI Development">
-                        <img src="media/h1-p3-ai-dev.svg" alt="Poster 3 - AI Development">
-                        <img src="media/h1-p4-ai-dev.svg" alt="Poster 4 - AI Development">
+                        <img src="media/pngs/h1-p1-ai-dev.png" alt="Poster 1 - AI Development">
+                        <img src="media/pngs/h1-p2-ai-dev.png" alt="Poster 2 - AI Development">
+                        <img src="media/pngs/h1-p3-ai-dev.png" alt="Poster 3 - AI Development">
+                        <img src="media/pngs/h1-p4-ai-dev.png" alt="Poster 4 - AI Development">
                     </div>
                 </div>
             </section>
@@ -235,31 +237,11 @@
     <div class="custom-cursor-container" id="customCursor">
         <img src="media/cursor.svg" class="custom-cursor-svg" alt="Lightning Cursor">
     </div>
+    <script src="scroll-performance.js"></script>
+    <script src="responsive-images.js"></script>
+    <script src="reveal.js"></script>
     <script src="cursor.js"></script>
-
     <script src="script-lightning-top.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const observerOptions = {
-                threshold: 0.15 // Triggers when 15% of the element is visible
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("active");
-                        // Optional: Stop observing after it reveals once
-                        // observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Target all elements you want to reveal
-            const revealElements = document.querySelectorAll(".reveal");
-            revealElements.forEach((el) => observer.observe(el));
-        });
-    </script>
 
     <script>
         document.getElementById('backToTop').addEventListener('click', function (e) {

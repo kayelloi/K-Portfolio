@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krysten Loi | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link rel="icon" href="media/favicon-k.svg" type="image/svg+xml">
 </head>
@@ -87,7 +89,7 @@
     <main>
         <div class="continuous-bg-wrapper">
             <section id="production-output" class="production-output reveal">
-                <img src="media/h3-dalba-rebrand.svg" alt="d'Alba Sunscreen Rebrand" class="production-output-img">
+                <img src="media/pngs/h3-dalba-rebrand.png" alt="d'Alba Sunscreen Rebrand" class="production-output-img">
                 <h4>Campaign Sample Videos</h4>
 
                 <div class="video-hero-container">
@@ -125,7 +127,7 @@
                     </div>
                 </div>
                 <div class="visual-break reveal">
-                    <img src="media/h3-visual-break.svg" alt="Visual Break">
+                    <img src="media/pngs/h3-visual-break.png" alt="Visual Break">
                 </div>
             </section>
 
@@ -143,7 +145,7 @@
 
                 <div class="execution-big-idea reveal">
                     <div class="big-idea">
-                        <img src="media/h3-big-idea.svg" alt="Protection is Luxury - Big Idea for d'Alba's Rebrand">
+                        <img src="media/pngs/h3-big-idea.png" alt="Protection is Luxury - Big Idea for d'Alba's Rebrand">
                     </div>
                     <div class="process-work">
                         <div class="process-work-text">
@@ -186,9 +188,9 @@
                     <div class="design-process-sections">
                         <h4>Merch Mockups</h4>
                         <div class="image-row-three">
-                            <img src="media/h3-merch-1.svg" alt="Sunscreen Holder">
-                            <img src="media/h3-merch-2.svg" alt="Mirror Compact">
-                            <img src="media/h3-merch-3.svg" alt="Makeup Pouch">
+                            <img src="media/pngs/h3-merch-1.png" alt="Sunscreen Holder">
+                            <img src="media/pngs/h3-merch-2.png" alt="Mirror Compact">
+                            <img src="media/pngs/h3-merch-3.png" alt="Makeup Pouch">
                         </div>
                     </div>
 
@@ -196,9 +198,9 @@
                     <div class="design-process-sections">
                         <h4>Visual Style</h4>
                         <div class="image-row-three">
-                            <img src="media/h3-vs-1.svg" alt="ver.1">
-                            <img src="media/h3-vs-2.svg" alt="ver.2">
-                            <img src="media/h3-vs-3.svg" alt="ver.3">
+                            <img src="media/pngs/h3-vs-1.png" alt="ver.1">
+                            <img src="media/pngs/h3-vs-2.png" alt="ver.2">
+                            <img src="media/pngs/h3-vs-3.png" alt="ver.3">
                         </div>
                     </div>
 
@@ -206,11 +208,11 @@
                     <div class="process-row-tc">
                         <div class="process-column">
                             <h4>Typography</h4>
-                            <img src="media/h3-typography.svg" alt="d'Alba's Typography">
+                            <img src="media/pngs/h3-typography.png" alt="d'Alba's Typography">
                         </div>
                         <div class="process-column">
                             <h4>Colour Palette</h4>
-                            <img src="media/h3-color-palette.svg" alt="d'Alba's Colour Palette">
+                            <img src="media/pngs/h3-color-palette.png" alt="d'Alba's Colour Palette">
                         </div>
                     </div>
                 </div>
@@ -246,31 +248,11 @@
     <div class="custom-cursor-container" id="customCursor">
         <img src="media/cursor.svg" class="custom-cursor-svg" alt="Lightning Cursor">
     </div>
+    <script src="scroll-performance.js"></script>
+    <script src="responsive-images.js"></script>
+    <script src="reveal.js"></script>
     <script src="cursor.js"></script>
-
     <script src="script-lightning-top.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const observerOptions = {
-                threshold: 0.15 // Triggers when 15% of the element is visible
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("active");
-                        // Optional: Stop observing after it reveals once
-                        // observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            // Target all elements you want to reveal
-            const revealElements = document.querySelectorAll(".reveal");
-            revealElements.forEach((el) => observer.observe(el));
-        });
-    </script>
 
     <script>
         document.getElementById('backToTop').addEventListener('click', function (e) {

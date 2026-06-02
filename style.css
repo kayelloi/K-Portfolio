@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;700&family=Space+Grotesk:wght@300;400;700&family=Stick&display=swap');
 
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
 html, body {
     width: 100%;
     margin: 0;
@@ -9,7 +15,7 @@ html, body {
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
 }
 
 body {
@@ -21,15 +27,14 @@ body {
 /* 1. The initial state (Hidden and shifted down) */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    transition-property: transform, opacity;
-    width: 100%
+    transform: translate3d(0, 24px, 0);
+    transition: opacity 0.55s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 100%;
 }
-/* 2. The visible state (Triggered by JS) */
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
 }
 
 :root {
@@ -69,19 +74,20 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 .custom-cursor-container {
     position: fixed;
+    top: 0;
+    left: 0;
     pointer-events: none;
-    /* This allows the mouse to "see" the links underneath */
     z-index: 9999;
-    transform: translate(-50%, -50%);
     display: none;
-    /* Initial Glow */
     filter: drop-shadow(0 0 10px rgba(125, 143, 193, 0.5));
-    transition: filter 0.3s ease, transform 0.3s ease;
+    transition: filter 0.2s ease;
+    will-change: transform;
 }
-/* The Active State */
 .custom-cursor-container.cursor-hover {
     filter: drop-shadow(0 0 20px rgba(125, 143, 193, 1)) brightness(1.2);
-    transform: translate(-50%, -50%) scale(1.3);
+}
+html.is-scrolling .custom-cursor-container {
+    transition: none;
 }
 /* Show only on desktop/mouse devices */
 @media (pointer: fine) {
@@ -116,8 +122,13 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     align-items: center;
     padding: 30px 8%;
     z-index: 100;
-    background: rgba(var(--bg-color), 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(var(--bg-color), 0.94);
+}
+html:not(.is-scrolling) .navbar {
+    backdrop-filter: blur(8px);
+}
+html.is-scrolling .navbar {
+    backdrop-filter: none;
 }
 .nav-links {
     display: flex;
@@ -335,7 +346,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 .thunder-wrapper .glow-text {
     filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.6));
-    animation: zap-glow 3s 0.6s infinite;
+    animation: glow-opacity-pulse 3s 0.6s ease-in-out infinite;
 }
 
 .hero-disclaimer {
@@ -380,9 +391,9 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     transform-origin: top;
     pointer-events: none;
 
-    animation: 
+    animation:
         zap-strike 0.6s steps(9) forwards,
-        zap-glow 3s 0.6s infinite;
+        glow-opacity-pulse 3s 0.6s ease-in-out infinite;
 }
 @keyframes zap-strike {
     from {
@@ -393,20 +404,12 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         background-position: -7236px 0;
     }
 }
-@keyframes zap-glow {
-    0%   { filter: drop-shadow(0 0 0px  rgba(var(--electric-blue), 0));                    }
-    5%   { filter: drop-shadow(0 0 50px rgba(var(--electric-blue), 1))  brightness(2);     }
-    8%   { filter: drop-shadow(0 0 20px rgba(var(--electric-blue), 0.6)) brightness(1.3);  }
-    11%  { filter: drop-shadow(0 0 45px rgba(var(--electric-blue), 0.95)) brightness(1.8); }
-
-    /* shorter hold */
-    18%  { filter: drop-shadow(0 0 42px rgba(var(--electric-blue), 0.88)) brightness(1.7); }
-    28%  { filter: drop-shadow(0 0 35px rgba(var(--electric-blue), 0.75)) brightness(1.5); }
-
-    /* fade sooner */
-    48%  { filter: drop-shadow(0 0 18px rgba(var(--electric-blue), 0.35)) brightness(1.15);}
-    68%  { filter: drop-shadow(0 0 6px  rgba(var(--electric-blue), 0.12));                 }
-    100% { filter: drop-shadow(0 0 0px  rgba(var(--electric-blue), 0));                    }
+@keyframes glow-opacity-pulse {
+    0%, 100% { opacity: 0.35; }
+    5%       { opacity: 1; }
+    18%      { opacity: 0.9; }
+    48%      { opacity: 0.45; }
+    68%      { opacity: 0.2; }
 }
 
 .page-lightning-container {
@@ -415,11 +418,12 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     right: 15%;
     z-index: 2;
     pointer-events: none;
+    filter: drop-shadow(0 0 10px rgba(var(--electric-blue), 0.65));
     animation: glow-pulse 3s ease-in-out infinite alternate;
 }
 @keyframes glow-pulse {
-    from { filter: drop-shadow(0 0 5px  rgba(var(--electric-blue), 0.5)); }
-    to   { filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.9)); }
+    from { opacity: 0.45; }
+    to   { opacity: 0.85; }
 }
 .page-lightning {
     width: 100%;
@@ -512,16 +516,17 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 .gallery-scroll {
     overflow: hidden;
-    /* Hides the images that are "off-screen" */
     width: 120%;
     margin-left: -10%;
+    contain: layout paint;
 }
 .scroll-track {
     display: flex;
     gap: 0px;
     width: max-content;
-    /* Critical: keeps all images in one long line */
     animation: scroll 80s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 .scroll-track img {
     height: 350px;
@@ -531,14 +536,20 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
 }
 @keyframes scroll {
     0% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
-
     100% {
-        /* This moves the track exactly to the point where the 
-           cloned images start, making the reset invisible */
-        transform: translateX(-50%);
+        transform: translate3d(-50%, 0, 0);
     }
+}
+html.is-scrolling .scroll-track,
+html.is-scrolling .page-lightning-container,
+html.is-scrolling .lightning-zap,
+html.is-scrolling .glow-text,
+html.is-scrolling .about-lightning,
+html.is-scrolling .kanji-wrapper .glow-text,
+html.is-scrolling .flash-overlay {
+    animation-play-state: paused !important;
 }
 .gallery-scroll:hover .scroll-track {
     animation-play-state: paused;
@@ -793,11 +804,8 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     right: 5.6%;
     z-index: 1;
     pointer-events: none;
-    animation: glow-pulse-highlight1 3s ease-in-out infinite alternate;
-}
-@keyframes glow-pulse-highlight1 {
-    from { filter: drop-shadow(0 0 5px  rgba(var(--vivid-purple), 0.5)); }
-    to   { filter: drop-shadow(0 0 15px rgba(var(--vivid-purple), 0.9)); }
+    filter: drop-shadow(0 0 10px rgba(var(--vivid-purple), 0.65));
+    animation: glow-pulse 3s ease-in-out infinite alternate;
 }
 
 /* Project Hero Layout */
@@ -1296,11 +1304,8 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     right: 6%;
     z-index: 1;
     pointer-events: none;
-    animation: glow-pulse-highlight2 3s ease-in-out infinite alternate;
-}
-@keyframes glow-pulse-highlight2 {
-    from { filter: drop-shadow(0 0 5px  rgba(var(--burnt-orange), 0.5)); }
-    to   { filter: drop-shadow(0 0 15px rgba(var(--burnt-orange), 0.9)); }
+    filter: drop-shadow(0 0 10px rgba(var(--burnt-orange), 0.65));
+    animation: glow-pulse 3s ease-in-out infinite alternate;
 }
 
 /* View All Portfolio Highlights */
@@ -1525,11 +1530,8 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     right: 5.6%;
     z-index: 1;
     pointer-events: none;
-    animation: glow-pulse-highlight3 3s ease-in-out infinite alternate;
-}
-@keyframes glow-pulse-highlight3 {
-    from { filter: drop-shadow(0 0 5px  rgba(var(--gold-yellow), 0.5)); }
-    to   { filter: drop-shadow(0 0 15px rgba(var(--gold-yellow), 0.9)); }
+    filter: drop-shadow(0 0 10px rgba(var(--gold-yellow), 0.65));
+    animation: glow-pulse 3s ease-in-out infinite alternate;
 }
 
 /* View All Portfolio Highlights */
@@ -2054,7 +2056,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     margin-bottom: -30px;
 
     filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.6));
-    animation: zap-glow 3s 0.6s infinite;
+    animation: glow-opacity-pulse 3s 0.6s ease-in-out infinite;
 
     pointer-events: none;
     z-index: 3;
@@ -2089,7 +2091,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     z-index: -1;
     color: rgba(var(--electric-blue));
     filter: drop-shadow(0 0 15px rgba(var(--electric-blue), 0.6));
-    animation: zap-glow 3s 0.6s infinite;
+    animation: glow-opacity-pulse 3s 0.6s ease-in-out infinite;
 }
 .about-page .bio-text h2, #experiences h2, .philosophy h2, .skills-tools h2 {
     font-family: 'Manrope', sans-serif;
@@ -2242,6 +2244,11 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     align-items: center;
     width: max-content;
     animation: scroll 30s linear infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+.about-page .experiences-wrapper {
+    contain: layout paint;
 }
 .experiences-scroll:hover .scroll-track {
     animation-play-state: paused;
@@ -2297,7 +2304,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
    MOBILE (max-width: 768px)
    ========================================================================== */
 
-   @media (max-width: 768px) {
+@media (max-width: 768px) {
     /* Navbar */
     .navbar {
         display: flex;
@@ -2406,23 +2413,15 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     .lightning-zap {
         position: absolute;
         left: 50%;
-    top: 0px; 
-    
-    /* 2. The Fix: 
-       First, translate(-50%) pulls the element back half its own width to center it.
-       Second, scale(0.25) shrinks it. 
-       KEEP THEM IN THIS ORDER. */
-    transform: translateX(-50%) scale(0.3);
-    
-    /* 3. Cleanup: ensure 'right' is not fighting with 'left' */
-    right: auto;
-    margin: 0;
-        
+        top: 0;
+        right: auto;
+        margin: 0;
+        transform: translateX(-50%) scale(0.3);
+        transform-origin: top center;
         z-index: 10;
         pointer-events: none;
-
-        animation: zap-strike 0.6s steps(9) forwards,
-                   zap-vanish 0.1s ease-out 1.8s forwards;
+        background-image: none !important;
+        animation: zap-vanish 0.1s ease-out 1.8s forwards;
     }
     @keyframes fade-in-delayed {
         to { opacity: 1; }
@@ -2456,7 +2455,7 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         z-index: 0;
     }
     .home-page .hero-title h1 {
-        font-size: 85px; 
+        font-size: clamp(42px, 12vw, 85px);
         line-height: 0.95;
         margin: 10px 0;
     }
@@ -2503,8 +2502,14 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         padding-top: 70px;
         padding-bottom: 110px;
     }
+    .gallery-scroll {
+        width: 100%;
+        margin-left: 0;
+    }
     .scroll-track img {
-        height: 200px;
+        height: 180px;
+        width: auto;
+        max-width: none;
     }
     .gallery-action a p {
         font-size: 15px;
@@ -2526,10 +2531,16 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     }
     .skills-grid {
         display: flex;
-        flex-direction: row;
-        gap: 69.7px;
-        justify-content: left;
+        flex-direction: column;
+        gap: 48px;
+        justify-content: flex-start;
         width: 100%;
+        max-width: 100%;
+    }
+    .skills-group,
+    .tools-group {
+        width: 100%;
+        min-width: 0;
     }
     .tools-group {
         display: flex;
@@ -2565,10 +2576,10 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         padding-bottom: 20px;
     }
     .hero-title h1 {
-        font-size: 75px;
+        font-size: clamp(40px, 11vw, 75px);
     }
     .project-category h1 {
-        font-size: 50px;
+        font-size: clamp(28px, 8vw, 50px);
     }
     .project-meta {
         margin-top: 40px;
@@ -2580,6 +2591,43 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
         grid-template-columns: 1fr;
         gap: 15px;
         padding: 30px 6%;
+    }
+
+    .highlight2-page .production-output {
+        width: 100%;
+        padding: 60px 6% 50px 6%;
+    }
+    .highlight3-page .production-output {
+        padding: 60px 6% 50px 6%;
+    }
+    .highlight1-page .continuous-bg-wrapper,
+    .highlight2-page .continuous-bg-wrapper,
+    .highlight3-page .continuous-bg-wrapper {
+        background-image: linear-gradient(rgba(var(--bg-color), 0.65), rgba(var(--bg-color), 1));
+    }
+    .highlight1-page .continuous-bg-wrapper {
+        background-image: linear-gradient(rgba(var(--bg-color), 0.65), rgba(var(--bg-color), 1)), url('media/mobile/h1-background.webp');
+    }
+    .highlight2-page .continuous-bg-wrapper {
+        background-image: linear-gradient(rgba(var(--bg-color), 0), rgba(var(--bg-color), 1)), url('media/mobile/h2-background.webp');
+    }
+    .highlight3-page .continuous-bg-wrapper {
+        background-image: linear-gradient(rgba(var(--bg-color), 0), rgba(var(--bg-color), 1)), url('media/mobile/h3-background.webp');
+    }
+    .highlight2-page .execution-part-1,
+    .highlight2-page .execution-part-2 {
+        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0 40px 0;
+        gap: 24px;
+    }
+    .narrative-text,
+    .execution-text {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0;
     }
     .highlight1-page .stat-item p, .highlight2-page .stat-item p, .highlight3-page .stat-item p {
         font-size: 13px;
@@ -2761,5 +2809,48 @@ body, a, button, .btn, .project-img-wrapper, .project-img-wrapper img, .gallery-
     .execution-big-idea,
     .execution-design-process {
         padding: 0 0 30px 0;
+    }
+
+    .section, .gallery-section, .philosophy, #highlights {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .project-img-wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .cta-content,
+    .np-content {
+        min-height: 480px;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-grid {
+        gap: 36px;
+    }
+    .scroll-track {
+        animation-duration: 100s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .scroll-track,
+    .lightning-zap,
+    .page-lightning-container,
+    .glow-text,
+    .about-lightning,
+    .scroll-prompt img {
+        animation: none !important;
     }
 }
